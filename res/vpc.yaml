@@ -1,0 +1,60 @@
+# VPC
+
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: VPC
+metadata:
+  name: vpc
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    cidrBlock: 10.0.0.0/16
+    region: ap-south-1
+    enableDnsSupport: true
+    enableDnsHostNames: true
+    instanceTenancy: default
+  writeConnectionSecretToRef: 
+    name: vpc-secret
+    namespace: crossplane-system
+  providerConfigRef:
+    name: aws-provider
+
+---
+
+#Subnet-1
+
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: subnet1
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    cidrBlock: 10.0.1.0/24
+    vpcIdRef:
+      name: vpc
+    region: ap-south-1
+    availabilityZone: ap-south-1a
+  providerConfigRef:
+    name: aws-provider  
+
+
+
+---
+
+#Subnet-2
+
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: subnet2
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    cidrBlock: 10.0.2.0/24
+    vpcIdRef:
+      name: vpc
+    region: ap-south-1
+    availabilityZone: ap-south-1b
+  providerConfigRef:
+    name: aws-provider  
+
