@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: testingArg
+  name: testing-arg
   namespace: argocd
 spec:
   project: default
@@ -11,4 +11,12 @@ spec:
     path: res
   destination:
     server: https://kubernetes.default.svc
-    namespace: guestbook
+    namespace: test
+  
+  syncPolicy:
+    syncOptions:
+      - CreateNameSpace=true
+    
+    automated:
+      selfHeal: true
+      prune: true
