@@ -53,8 +53,10 @@
      ```
      
      #### Other usefull commands
-     1. list resources managed ``` kubectl get managed```
-     2. get all resources ```kubectl get crossplane``` 
+     1. list resources managed
+         ``` kubectl get managed```
+     2. get all resources 
+        ```kubectl get crossplane``` 
      
      
   2. [ArgoCD](https://argo-cd.readthedocs.io/en/stable/)
