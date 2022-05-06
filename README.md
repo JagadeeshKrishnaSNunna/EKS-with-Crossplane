@@ -64,7 +64,7 @@
         ``` 
      
      
-    2. [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) is a Kubernetes-native continuous deployment (CD) tool. Unlike external CD tools that only            enable push-based deployments, Argo CD can pull updated code from Git repositories and deploy it directly to Kubernetes resources. It enables              developers to manage both infrastructure configuration and application updates in one system.
+   2. [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) is a Kubernetes-native continuous deployment (CD) tool. Unlike external CD tools that only            enable push-based deployments, Argo CD can pull updated code from Git repositories and deploy it directly to Kubernetes resources. It enables              developers to manage both infrastructure configuration and application updates in one system.
     
     #### Installation:
      ```
