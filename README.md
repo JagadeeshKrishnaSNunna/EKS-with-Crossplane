@@ -103,6 +103,14 @@
       (**NOTE** If you are using Private Repository check steps to follow [here](https://argo-cd.readthedocs.io/en/release-1.8/user-guide/private-repositories/).)
     
     
+      ###Future Work:
+          If you want to make changes to the cluster like scaling the nodes in node group, etc,. All you need to do is change the respective yaml files and pust the changes to git repository. ArgoCD detects the code changes and update the cluster from current to the desired state. ArgoCD takes time to detect the code changes. It scans the code every 3 min.
+          
+          
+         If any changes made manually from the AWS console or CLI to the cluster. ArgoCD and Crossplane detects the drift and revert all the changes made and matches to the desired state mentioned in the crocessplane yaml files.
+
+         For provisioning of other Resources in Cloud find docs [here](https://doc.crds.dev/github.com/crossplane/provider-aws).   
+      
     
     
     
