@@ -17,4 +17,18 @@
      helm install crossplane --namespace crossplane-system crossplane-stable/crossplane
 
      ```
+     #### Check Crossplane Status
+     ```
+     helm list -n crossplane-system
+
+     kubectl get all -n crossplane-system
+     
+     ```  
+     ####Install Crossplane CLI
+     ```
+     curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/install.sh | sh
+     sudo mv kubectl-crossplane /home/<username>/bin #(promted in output of previous command)
+     ```
+     (**NOTE:** we use AWS Cloud Service Provider. Crossplne has API to work with [other-providers](https://crossplane.io/docs/v1.7/api-docs/overview.html))
+     
   2. [ArgoCD](https://argo-cd.readthedocs.io/en/stable/)
