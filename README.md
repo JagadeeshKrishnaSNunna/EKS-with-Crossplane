@@ -6,5 +6,15 @@
     Kind
 
 ### Tools and Addons
-  1. [Crossplane](https://crossplane.io/docs/v1.7/) is an open source Kubernetes add-on that transforms your cluster into a universal control plane. 
+  1. [Crossplane](https://crossplane.io/docs/v1.7/) is a Cloud Native Compute Foundation project. Crossplane is an open source Kubernetes add-on that            transforms your cluster into a universal control plane. Crossplane extends your Kubernetes cluster to support orchestrating any infrastructure or          managed service. Compose Crossplane’s granular resources into higher level abstractions that can be versioned, managed, deployed and consumed using        your favorite tools and existing processes.
+     #### Installation:
+     ```
+     kubectl create namespace crossplane-system
+     
+     helm repo add crossplane-stable https://charts.crossplane.io/stable
+     helm repo update
+
+     helm install crossplane --namespace crossplane-system crossplane-stable/crossplane
+
+     ```
   2. [ArgoCD](https://argo-cd.readthedocs.io/en/stable/)
