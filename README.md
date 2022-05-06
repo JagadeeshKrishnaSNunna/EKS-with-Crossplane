@@ -100,7 +100,7 @@
       ```
       kubectl apply -f application.yaml
       ```
-    
+      ###**NOTE** If you are using Private Repository check steps to follow [here](https://argo-cd.readthedocs.io/en/release-1.8/user-guide/private-repositories/).
     
     
     
