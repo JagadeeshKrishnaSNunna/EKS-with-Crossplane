@@ -6,9 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/JagadeeshKrishnaSNunna/crossplaneTest.git
+    repoURL: < Git Repo URL Address >
     targetRevision: HEAD
-    path: res
+    path: < Target Directory Name>
   destination:
     server: https://kubernetes.default.svc
     namespace: k8s
