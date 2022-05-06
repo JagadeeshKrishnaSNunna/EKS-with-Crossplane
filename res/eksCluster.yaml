@@ -1,0 +1,18 @@
+apiVersion: eks.aws.crossplane.io/v1beta1
+kind: Cluster
+metadata:
+  name: eks-cluster
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider
+  forProvider:
+    region: ap-south-1
+    version: "1.21"
+    resourcesVpcConfig:
+      subnetIdRefs:
+        - name: subnet1
+        - name: subnet2
+    roleArnRef:
+      name: cluster-role
+    

@@ -1,0 +1,76 @@
+# node role
+apiVersion: iam.aws.crossplane.io/v1beta1
+kind: Role
+metadata:
+  name: node-role
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider
+  forProvider:
+    assumeRolePolicyDocument: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "ec2.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      }
+
+---
+apiVersion: iam.aws.crossplane.io/v1beta1
+kind: RolePolicyAttachment
+metadata:
+  name: wn-role-policy-attach
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider
+  forProvider:
+    policyArn: arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+    roleNameRef:
+      name: node-role
+---
+apiVersion: iam.aws.crossplane.io/v1beta1
+kind: RolePolicyAttachment
+metadata:
+  name: ecr-role-policy-attach
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider
+  forProvider:
+    policyArn: arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+    roleNameRef:
+      name: node-role
+---
+apiVersion: iam.aws.crossplane.io/v1beta1
+kind: RolePolicyAttachment
+metadata:
+  name: instance-role-policy-attach
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider
+  forProvider:
+    policyArn: arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+    roleNameRef:
+      name: node-role
+---
+apiVersion: iam.aws.crossplane.io/v1beta1
+kind: RolePolicyAttachment
+metadata:
+  name: eks-cni-role-policy-attach
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider
+  forProvider:
+    policyArn: arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+    roleNameRef:
+      name: node-role

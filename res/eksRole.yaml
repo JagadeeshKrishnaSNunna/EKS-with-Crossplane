@@ -1,0 +1,37 @@
+apiVersion: iam.aws.crossplane.io/v1beta1
+kind: Role
+metadata:
+  name: cluster-role
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider
+  forProvider:
+    description: this is a test IAM Role
+    assumeRolePolicyDocument: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "eks.amazonaws.com"
+            },
+        "Action": "sts:AssumeRole"
+        }]
+      }
+
+---
+
+apiVersion: iam.aws.crossplane.io/v1beta1
+kind: RolePolicyAttachment
+metadata:
+  name: eks-role-policy-attach
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider
+  forProvider:
+    policyArn: arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+    roleNameRef:
+      name: cluster-role

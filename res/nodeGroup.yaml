@@ -1,0 +1,35 @@
+apiVersion: eks.aws.crossplane.io/v1alpha1
+kind: NodeGroup
+metadata:
+  name: node-group
+spec:
+  deletionPolicy: Delete
+  providerConfigRef:
+    name: aws-provider
+  writeConnectionSecretToRef:
+    name: node-group-secrets
+    namespace: crossplane-system
+  forProvider:
+    amiType: AL2_ARM_64
+    capacityType: SPOT
+    region: ap-south-1
+    clusterNameRef: 
+      name: eks-cluster
+    instanceTypes: 
+      - t2.micro
+      - t2.small
+    nodeRoleRef:
+      name: node-role
+    scalingConfig:
+      desiredSize: 1
+      minSize: 1
+      maxSize: 2
+    subnetRefs:
+      - name: subnet1
+      - name: subnet2
+    tags:
+     key: kubernetes.io/cluster/eks-cluster
+     value: owned
+    
+
+
